@@ -8,6 +8,8 @@ import ShopPage from './pages/shop/shop.component'
 import { auth, createUserProfileDocument } from './firebase/firebase.utils'
 
 class App extends Component {
+  unsubscribeFromAuth = null
+
   constructor() {
     super()
 
@@ -15,8 +17,6 @@ class App extends Component {
       currentUser: null
     }
   }
-
-  unsubscribeFromAuth = null
 
   componentDidMount() {
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
@@ -29,7 +29,6 @@ class App extends Component {
               ...snapshot.data()
             }
           })
-          console.log(this.state)
         })
       } else {
         this.setState({
